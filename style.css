@@ -12,17 +12,16 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
     background-image:
         radial-gradient(circle at 15% 85%, #ffb3c1 0%, transparent 40%),
         radial-gradient(circle at 85% 15%, #ff8fa3 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, #fff0f3 0%, transparent 60%);
 }
 
-/* Floating hearts */
+/* Floating hearts background */
 .hearts-bg {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
@@ -51,7 +50,6 @@ body {
     to { transform: translateY(-110vh); opacity: 0; }
 }
 
-/* Main container */
 .container {
     position: relative;
     z-index: 1;
@@ -59,13 +57,12 @@ body {
     padding: 40px 20px;
 }
 
-/* Title */
 h1 {
     font-size: 2.4rem;
     color: #d63384;
     font-weight: 900;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 0 rgba(214, 51, 132, 0.2);
+    text-shadow: 2px 2px 0px rgba(214, 51, 132, 0.2);
     animation: wiggle 2s ease-in-out infinite;
 }
 
@@ -74,7 +71,6 @@ h1 {
     50% { transform: rotate(1deg); }
 }
 
-/* GIF */
 .gif-container {
     margin: 20px auto;
     display: flex;
@@ -89,12 +85,13 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
-/* Buttons */
 .buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
+    align-items: center;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 #yes-btn {
@@ -104,14 +101,21 @@ h1 {
     border-radius: 16px;
     font-size: 1.6rem;
     font-weight: 900;
+    font-family: 'Nunito', sans-serif;
     padding: 18px 45px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.45);
+    letter-spacing: 1px;
 }
 
 #yes-btn:hover {
-    transform: scale(1.06);
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 10px 28px rgba(76, 175, 80, 0.55);
+}
+
+#yes-btn:active {
+    transform: scale(0.98);
 }
 
 #no-btn {
@@ -121,39 +125,59 @@ h1 {
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
+    font-family: 'Nunito', sans-serif;
     padding: 12px 28px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background 0.2s, left 0.25s ease, top 0.25s ease;
     box-shadow: 0 4px 14px rgba(231, 76, 60, 0.4);
 }
 
-/* Toast */
+#no-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+}
+
 #tease-toast {
     margin-top: 14px;
     font-size: 1rem;
     color: #d63384;
     font-weight: 700;
+    font-style: italic;
     opacity: 0;
-    transition: 0.3s;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    min-height: 1.5rem;
 }
 
 #tease-toast.show {
     opacity: 1;
+    transform: translateY(0);
 }
 
-/* YES PAGE */
-.yes-container h1 {
+/* Yes page specific */
+.yes-container h1.yes-title {
     font-size: 2.8rem;
-    animation: bounce 0.6s infinite alternate;
+    animation: bounceTitle 0.6s ease infinite alternate;
 }
 
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10px); }
+@keyframes bounceTitle {
+    from { transform: translateY(0) rotate(-1deg); }
+    to { transform: translateY(-12px) rotate(1deg); }
 }
 
 .yes-message {
     font-size: 1.4rem;
     color: #e91e8c;
-    margin-top: 20px;
+    font-weight: 700;
+    margin-top: 24px;
+    animation: fadeIn 1s ease 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.yes-container #cat-gif {
+    width: 260px;
+    height: 260px;
 }
