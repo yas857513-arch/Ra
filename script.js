@@ -13,12 +13,27 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
     const noMessages = [
-        "Nahi 😒",
-        "Pakka mana karogi? 🤔",
-        "Soch lo... 😏",
-        "Please haan bol do... 🥺",
-        "Last chance 😭"
-    ]
+    "Nahi 😒",
+    "Pakka mana karogi? 🤔",
+    "Soch lo... 😏",
+    "Please haan bol do... 🥺",
+    "Last chance 😭",
+    "Sach me nahi? 😢",
+    "Itna bhi kya sochna... 😏",
+    "Ek baar haan bol do na 😊",
+    "Gulab jamun yaad aayega 😋🍩",
+    "Mana karna zaroori hai kya? 🤨",
+    "Thoda sa smile karke haan bol do 😊",
+    "Itni bhi strict mat bano 😒",
+    "Main itna bura nahi hu 😅",
+    "Dil tod dogi kya? 💔",
+    "Aakhri baar puch raha hu... 😭",
+    "Ab toh maan jao na 🥺",
+    "Ek haan se sab set ho jayega 😎",
+    "Please mana mat karo 😢",
+    "Bas ek baar haan bol do 😍",
+    "Ab toh han karna he padega 😅"
+]
 
     let noClickCount = 0
 
