@@ -12,40 +12,148 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    background-image:
+        radial-gradient(circle at 15% 85%, #ffb3c1 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, #ff8fa3 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #fff0f3 0%, transparent 60%);
 }
 
+/* Floating hearts */
+.hearts-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hearts-bg::before,
+.hearts-bg::after {
+    content: '💕 💗 💖 💝 💓';
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.15;
+    animation: floatHearts 12s linear infinite;
+    white-space: nowrap;
+    top: 100%;
+    left: 10%;
+}
+
+.hearts-bg::after {
+    animation-delay: 6s;
+    left: 60%;
+    content: '💗 💕 💓 💖 💝';
+}
+
+@keyframes floatHearts {
+    from { transform: translateY(0); opacity: 0.15; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Main container */
 .container {
+    position: relative;
+    z-index: 1;
     text-align: center;
+    padding: 40px 20px;
 }
 
+/* Title */
 h1 {
+    font-size: 2.4rem;
     color: #d63384;
-    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 rgba(214, 51, 132, 0.2);
+    animation: wiggle 2s ease-in-out infinite;
 }
 
-.gif-container img {
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+}
+
+/* GIF */
+.gif-container {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#cat-gif {
     width: 200px;
-    margin: 20px 0;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    transition: opacity 0.3s ease;
 }
 
+/* Buttons */
 .buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
+    margin-top: 30px;
 }
 
 #yes-btn {
-    background: green;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     color: white;
-    padding: 15px 30px;
-    border-radius: 10px;
     border: none;
+    border-radius: 16px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    padding: 18px 45px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.45);
+}
+
+#yes-btn:hover {
+    transform: scale(1.06);
 }
 
 #no-btn {
-    background: red;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
     color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
     border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 14px rgba(231, 76, 60, 0.4);
+}
+
+/* Toast */
+#tease-toast {
+    margin-top: 14px;
+    font-size: 1rem;
+    color: #d63384;
+    font-weight: 700;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#tease-toast.show {
+    opacity: 1;
+}
+
+/* YES PAGE */
+.yes-container h1 {
+    font-size: 2.8rem;
+    animation: bounce 0.6s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.yes-message {
+    font-size: 1.4rem;
+    color: #e91e8c;
+    margin-top: 20px;
 }
