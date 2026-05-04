@@ -4,37 +4,53 @@ const gifStages = [
     "https://media.tenor.com/f_rkpJbH1s8AAAAj/somsom1012.gif",
     "https://media.tenor.com/OGY9zdREsVAAAAAj/somsom1012.gif",
     "https://media1.tenor.com/m/WGfra-Y_Ke0AAAAd/chiikawa-sad.gif",
-    "https://media.tenor.com/CivArbX7NzQAAAAj/somsom1012.gif",
-    "https://media.tenor.com/5_tv1HquZlcAAAAj/chiikawa.gif",
-    "https://media1.tenor.com/m/uDugCXK4vI4AAAAC/chiikawa-hachiware.gif"
+    "https://media.tenor.com/CivArbX7NzQAAAAj/somsom1012.gif"
 ]
 
 const noMessages = [
-    "No",
-    "Are you positive? 🤔",
-    "Pookie please... 🥺",
-    "If you say no, I will be really sad...",
-    "I will be very sad... 😢",
-    "Please??? 💔",
-    "Don't do this to me...",
-    "Last chance! 😭",
-    "You can't catch me anyway 😜"
+    "Nahi 😒",
+    "Pakka mana karogi? 🤔",
+    "Soch lo... 😏",
+    "Please haan bol do... 🥺",
+    "Last chance 😭",
+    "Sach me nahi? 😢"
 ]
 
-const yesTeasePokes = [
-    "try saying no first... I bet you want to know what happens 😏",
-    "go on, hit no... just once 👀",
-    "you're missing out 😈",
-    "click no, I dare you 😏"
-]
-
-let yesTeasedCount = 0
 let noClickCount = 0
 let runawayEnabled = false
 
 const catGif = document.getElementById('cat-gif')
 const yesBtn = document.getElementById('yes-btn')
 const noBtn = document.getElementById('no-btn')
+
+function handleYesClick() {
+    window.location.href = "yes.html"
+}
+
+function handleNoClick() {
+    noClickCount++
+
+    noBtn.textContent = noMessages[Math.min(noClickCount, noMessages.length - 1)]
+
+    const size = parseFloat(window.getComputedStyle(yesBtn).fontSize)
+    yesBtn.style.fontSize = (size * 1.3) + "px"
+
+    catGif.src = gifStages[Math.min(noClickCount, gifStages.length - 1)]
+
+    if (noClickCount >= 4 && !runawayEnabled) {
+        noBtn.addEventListener("mouseover", runAway)
+        runawayEnabled = true
+    }
+}
+
+function runAway() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth)
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight)
+
+    noBtn.style.position = "fixed"
+    noBtn.style.left = x + "px"
+    noBtn.style.top = y + "px"
+}const noBtn = document.getElementById('no-btn')
 
 // ❌ MUSIC RELATED CODE REMOVED
 
